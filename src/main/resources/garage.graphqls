@@ -1,0 +1,55 @@
+scalar UUID
+
+schema{
+    query: Query
+    mutation: Mutation
+}
+
+type Mutation {
+    add(car: CarInput): UUID
+}
+
+# The root of all queries.
+type Query {
+    # Returns a list of cars.
+    cars: [Car]
+    # Return a car.
+    car(id: UUID): Car
+}
+
+# A car (or automobile) is a wheeled motor vehicle used for transportation.
+type Car {
+    # The car identifier
+    id: UUID
+    # The car wheels
+    wheels: Int
+    # The car brand
+    type: Brand
+    # The car name
+    name: String
+    # The car launch date
+    launchAt: String
+    # The car is discontinued?
+    isDiscontinued: Boolean
+}
+
+# A car (or automobile) is a wheeled motor vehicle used for transportation.
+input CarInput{
+    # The car wheels
+    wheels: Int
+    # The car brand
+    type: Brand
+    # The car name
+    name: String
+    # The car launch date
+    launchAt: String
+    # The car is discontinued?
+    isDiscontinued: Boolean
+}
+
+enum Brand {
+    FORD
+    MERCEDES_BENZ
+    SEAT
+    TOYOTA
+}

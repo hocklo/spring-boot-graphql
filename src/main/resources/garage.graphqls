@@ -1,12 +1,10 @@
-scalar UUID
-
 schema{
     query: Query
     mutation: Mutation
 }
 
 type Mutation {
-    add(car: CarInput): UUID
+    add(car: CarInput): ID
 }
 
 # The root of all queries.
@@ -14,23 +12,31 @@ type Query {
     # Returns a list of cars.
     cars: [Car]
     # Return a car.
-    car(id: UUID): Car
+    car(id: ID): Car
 }
 
 # A car (or automobile) is a wheeled motor vehicle used for transportation.
 type Car {
     # The car identifier
-    id: UUID
+    id: ID
     # The car wheels
     wheels: Int
     # The car brand
-    type: Brand
+    brand: Brand
     # The car name
     name: String
     # The car launch date
     launchAt: String
     # The car is discontinued?
     isDiscontinued: Boolean
+}
+
+# A brand is an overall experience of a customer that distinguishes an organization or product from its rivals in the eyes of the customer.
+type Brand {
+    # The brand identifier
+    id: ID
+    # The brand name
+    name: String
 }
 
 # A car (or automobile) is a wheeled motor vehicle used for transportation.
@@ -38,7 +44,7 @@ input CarInput{
     # The car wheels
     wheels: Int
     # The car brand
-    type: Brand
+    brandId: Int
     # The car name
     name: String
     # The car launch date
@@ -47,9 +53,3 @@ input CarInput{
     isDiscontinued: Boolean
 }
 
-enum Brand {
-    FORD
-    MERCEDES_BENZ
-    SEAT
-    TOYOTA
-}

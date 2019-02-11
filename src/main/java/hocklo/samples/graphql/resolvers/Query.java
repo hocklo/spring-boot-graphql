@@ -2,26 +2,24 @@ package hocklo.samples.graphql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import hocklo.samples.graphql.entities.Car;
-import hocklo.samples.graphql.services.GarageService;
+import hocklo.samples.graphql.repositories.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
 @AllArgsConstructor
 public class Query implements GraphQLQueryResolver {
 
-  private GarageService garageService;
+  private CarRepository carRepository;
 
   public List<Car> cars() {
-    return garageService.get();
+    return carRepository.findAll();
   }
 
-  public Optional<Car> car(UUID id) {
-
-    return garageService.get(id);
+  public Optional<Car> car(Long id) {
+    return carRepository.findById(id);
   }
 }
